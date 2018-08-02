@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+
+    <link rel="stylesheet" href="../css/exercises/ex4.css">
+</head>
+
+<body>
+    <div id="exercise">
+        <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+        <div>
+            <button v-on:click="startEffect">Start Effect</button>
+            <div id="effect" v-bind:class="firstStyle"></div>
+        </div>
+        <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+        <div v-bind:class="['strong', 'blueBg']">I got no class :(</div>
+        <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+        <div>
+            <input type="text" v-model="custom">
+            <div v-bind:class="custom"></div>
+        </div>
+        <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+        <div>
+            <input type="text" v-model="custom">
+            <input type="text" v-model="isActive">
+            <div v-bind:class="customClass"></div>
+        </div>
+        <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+        <div>
+            <input type="text" v-model="colorName">
+            <div class="small" v-bind:style="{'background-color': colorName}"></div>
+        </div>
+        <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+        <div>
+            <button v-on:click="startProgress">Start Progress</button>
+            <div class="blueBg small" v-bind:style="{width: loaderWidthPx}"></div>
+        </div>
+    </div>
+
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <script src="../js/exercises/ex4.js"></script>
+</body>
+
+</html>

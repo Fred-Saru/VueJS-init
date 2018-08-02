@@ -14,7 +14,8 @@
         <div class="demo" v-on:click="isRed = !isRed" v-bind:class="{red: isRed}">
         </div>
         <div class="demo"></div>
-        <div class="demo"></div>
+        <div class="demo" v-bind:class="color"></div>
+        <input type="text" v-model="color">
     </div>
 
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>

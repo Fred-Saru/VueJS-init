@@ -1,6 +1,7 @@
 new Vue({
 	el: '#app',
 	data: {
-		isRed: false
+		isRed: false,
+		color: 'green'
 	}
 });
