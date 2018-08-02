@@ -10,27 +10,54 @@
 </head>
 
 <body>
-    <div id="app">
-        <p v-if="show">You see me !</p>
-        <p v-else>Do you see me ?</p>
-        <button type="button" v-on:click="show = !show">Show</button>
+    <div id="app" class="app-container">
+        <div class="combat-zone">
+            <div class="player-zone">
+                <h1>YOU</h1>
+                <div class="healthbar-container">
+                    <div class="healthbar" v-bind:style="{width: playerHealthbar}">
+                        <span>{{player.health}}</span>
+                    </div>
+                </div>
+            </div>
 
-        <ul>
-            <li v-for="ingredient in ingredients">{{ingredient}}</li>
-        </ul>
-        <template v-for="person in persons" >
-            <div v-bind:style="{'background-color': person.color}">
-                <template v-for="(val, key) in person">
-                        <label>{{key}}:</label>
-                        <span>{{val}}</span>    
-                        <br>
+            <div class="player-zone">
+                <h1>MONSTER</h1>
+                <div class="healthbar-container">
+                        <div class="healthbar" v-bind:style="{width: monsterHealthbar}">
+                        <span>{{monster.health}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-zone">
+            <div class="action-bar">
+                <template v-if="!isInGame">
+                        <button class="action-button" type="button" v-on:click="gameInit">New Game</button>    
                 </template>
-            </div>    
-        </template>
-        
+                <template v-else>
+                    <button class="action-button" type="button" v-on:click="attack">Attack</button>
+                    <button class="action-button" type="button" v-on:click="special">Special</button>
+                    <button class="action-button" type="button" v-on:click="heal">Heal</button>
+                    <button class="action-button" type="button" v-on:click="giveUp">Abandon</button>    
+                </template>
+            </div>
+        </div>
+        <div class="event-zone">
+            <h2>Events log</h2>
+            <ul class="event-list">
+                <template v-for="event in events">
+                    <li v-bind:class="event.class">{{event.text}}</li>
+                </template>
+            </ul>
+        </div>
+
+
+
     </div>
 
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
     <script src="./js/playground.js"></script>
 </body>
+
 </html>
