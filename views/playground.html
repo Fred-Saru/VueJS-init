@@ -11,11 +11,23 @@
 
 <body>
     <div id="app">
-        <div class="demo" v-on:click="isRed = !isRed" v-bind:class="{red: isRed}">
-        </div>
-        <div class="demo"></div>
-        <div class="demo" v-bind:class="color"></div>
-        <input type="text" v-model="color">
+        <p v-if="show">You see me !</p>
+        <p v-else>Do you see me ?</p>
+        <button type="button" v-on:click="show = !show">Show</button>
+
+        <ul>
+            <li v-for="ingredient in ingredients">{{ingredient}}</li>
+        </ul>
+        <template v-for="person in persons" >
+            <div v-bind:style="{'background-color': person.color}">
+                <template v-for="(val, key) in person">
+                        <label>{{key}}:</label>
+                        <span>{{val}}</span>    
+                        <br>
+                </template>
+            </div>    
+        </template>
+        
     </div>
 
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>

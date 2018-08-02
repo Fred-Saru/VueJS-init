@@ -3,7 +3,7 @@ new Vue({
     data: {
         isHighlight: true,
         custom: 'small',
-        isActive: true,
+        isActive: false,
         colorName: 'yellow',
         loaderWidth: 0
     },
@@ -19,6 +19,9 @@ new Vue({
       }
     },
     computed: {
+        isActive: function() {
+            return this.isActive === 'true' ? true : false;
+        },
         firstStyle: function() {
             return {
                 highlight: this.isHighlight,
@@ -26,8 +29,7 @@ new Vue({
             };
         },
         customClass: function() {
-            const obj = {};
-            return obj[this.custom] = this.isActive;
+            return `{${this.custom}: ${this.isActive}}`
         },
         loaderWidthPx: function() {
            return this.loaderWidth + 'px';
