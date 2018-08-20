@@ -1,35 +1,39 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <br>
-                <button class="btn btn-primary" v-on:click="selectedTemplate = 'appBlue'">Load Blue Template</button>
-                <button class="btn btn-success" v-on:click="selectedTemplate = 'appGreen'">Load Green Template</button>
-                <button class="btn btn-danger" v-on:click="selectedTemplate = 'appRed'">Load Red Template</button>
-                <hr>
-                <component v-bind:is="selectedTemplate">
-                  <h3>I am the Blue zone !</h3>
-                </component>  
-            </div>
-        </div>
+      <app-quote-progress 
+        v-bind:maxQuotes="maxQuotes"
+        v-bind:quoteCount="quotes.length"></app-quote-progress>
+      <app-new-quote></app-new-quote>
+      <app-quote-grid v-bind:quotes="quotes"></app-quote-grid>
+      <div></div>
     </div>
 </template>
 
 <script>
-import Blue from "./components/assignment_8/Blue.vue";
-import Green from "./components/assignment_8/Green.vue";
-import Red from "./components/assignment_8/Red.vue";
+import QuoteGrid from "./components/QuoteGrid";
+import NewQuote from "./components/NewQuote";
+import QuoteProgress from "./components/QuoteProgress";
+import { EventBus } from "./main";
 
 export default {
   components: {
-    appBlue: Blue,
-    appGreen: Green,
-    appRed: Red
+    "app-quote-grid": QuoteGrid,
+    "app-new-quote": NewQuote,
+    "app-quote-progress": QuoteProgress
   },
   data() {
     return {
-      selectedTemplate: "appBlue"
+      quotes: ["Just a quote."],
+      maxQuotes: 10
     };
+  },
+  created() {
+    EventBus.$on("quotecreated", newQuote => {
+      if (this.quotes.length < this.maxQuotes) {
+        this.quotes.push(newQuote);
+      }
+    });
+    EventBus.$on("quotedeleted", index => this.quotes.splice(index, 1));
   }
 };
 </script>
