@@ -1,7 +1,5 @@
 import Vue from "vue";
-import App from "./App.vue";
-
-export const EventBus = new Vue();
+import App from "./App2.vue";
 
 new Vue({
   el: "#app",
