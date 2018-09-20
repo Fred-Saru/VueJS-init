@@ -5,9 +5,11 @@ import UserEdit from './components/user/UserEdit';
 import UserStart from './components/user/UserStart';
 
 export const routes = [
-    { path: '', component: Home },
-    { path: '/user/:id', component: User },
-    { path: '/user/:id/detail', component: UserDetail },
-    { path: '/user/:id/edit', component: UserEdit },
-    { path: '/user/:id/start', component: UserStart }
+    { path: '', component: Home, name: 'home' },
+    { path: '/user', component: User , children: [
+        { path: '', component: UserStart },
+        { path: ':id', component: UserDetail },
+        { path: ':id/edit', component: UserEdit, name: 'userEdit' }
+    ]},
+    { path: '*', redirect: { name: 'home' } }
 ];
