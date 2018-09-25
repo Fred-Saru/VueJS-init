@@ -11,6 +11,9 @@
 
 <script>
 export default {
-    
+    beforeRouteEnter(to, from, next) {
+        console.log('inside not loaded component.');
+        next();
+    }
 }
 </script>
